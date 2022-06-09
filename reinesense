@@ -4549,6 +4549,37 @@ local luas = gui:Tab("luas")
 local different = gui:Tab("different")
 local models = gui:Tab("models") 
 
+
+local CustomSkins = models:Sector("customskins", "Right")
+CustomSkins:Element("Toggle", "AWP | Dragon Lore", nil, function(tbl)
+	if tbl.Toggle then 
+        game.ReplicatedStorage.Viewmodels["v_AWP"].Handle.TextureID = "rbxassetid://6451539744"
+        game.ReplicatedStorage.Viewmodels["v_AWP"].Scope.TextureID = "rbxassetid://6451541040"
+        game.ReplicatedStorage.Viewmodels["v_AWP"].Mag.TextureID = "rbxassetid://2471931220"
+	end
+end)
+local CustomKnifes = models:Sector("customsknifes", "Right")
+CustomKnifes:Element("Toggle", "Minecraft Diamond Pickaxe", nil, function(tbl)
+	if tbl.Toggle then 
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/deaddigi/pepsi.club/main/skins/diamondpickaxe", true))()
+	end
+end)
+local CustomArms = models:Sector("customarms", "Right")
+CustomArms:Element("Toggle", "Arms | Steve", nil, function(tbl)
+	if tbl.Toggle then 
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/deaddigi/pepsi.club/main/skins/stevearms", true))()
+	end
+end)
+CustomArms:Element("Toggle", "Arms | Anarchia", nil, function(tbl)
+	if tbl.Toggle then 
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/deaddigi/pepsi.club/main/skins/anarchiaarms", true))()
+	end
+end)
+CustomArms:Element("Toggle", "Arms | King Snake", nil, function(tbl)
+	if tbl.Toggle then 
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/deaddigi/pepsi.club/main/skins/snakearms", true))()
+	end
+end)
 local models = models:Sector("models", "Left")
 models:Element("Button", "Reset Knives", {}, function(tbl)
 	game.ReplicatedStorage.Viewmodels["v_CT Knife"]:Destroy()
@@ -4711,6 +4742,21 @@ models:Element("Toggle", "Newan [USP]", nil, function(tbl)
 		game.ReplicatedStorage.Viewmodels["v_USPnew"].Name = "v_USP"
 	end
 end)
+models:Element("Toggle", "Deagle Cyber [Deagle]", nil, function(tbl)
+	if tbl.Toggle then 
+		game.ReplicatedStorage.Viewmodels["v_DesertEagle"]:Destroy()
+		wait()
+		local Model1 = Instance.new("Model", game.ReplicatedStorage.Viewmodels)
+		game:GetObjects('rbxassetid://9489668863')[1].Parent = Model1
+		Model = game.ReplicatedStorage.Viewmodels.Model
+		for _, Child in pairs(Model:GetChildren()) do
+			Child.Parent = Model.Parent
+		end
+		Model:Destroy()
+		wait()
+		game.ReplicatedStorage.Viewmodels["v_Deagle_cyber"].Name = "v_DesertEagle"
+	end
+end)	
 models:Element("Toggle", "Bowie [default Knife]", nil, function(tbl)
 	if tbl.Toggle then 
 		game.ReplicatedStorage.Viewmodels["v_CT Knife"]:Destroy()
@@ -4734,6 +4780,34 @@ models:Element("Toggle", "Bowie [default Knife]", nil, function(tbl)
 		wait()
 		game.ReplicatedStorage.Viewmodels["v_bowknife"].Name = "v_CT Knife"
 		game.ReplicatedStorage.Viewmodels["v_bowknife"].Name = "v_T Knife"
+	end
+end)
+models:Element("Toggle", "M9 Sapphire [default Knife]", nil, function(tbl)
+	if tbl.Toggle then 
+		game.ReplicatedStorage.Viewmodels["v_CT Knife"]:Destroy()
+		game.ReplicatedStorage.Viewmodels["v_T Knife"]:Destroy()
+		wait()
+		local Model1 = Instance.new("Model", game.ReplicatedStorage.Viewmodels)
+		game:GetObjects('rbxassetid://9471760149')[1].Parent = Model1
+		Model = game.ReplicatedStorage.Viewmodels.Model
+		for _, Child in pairs(Model:GetChildren()) do
+			Child.Parent = Model.Parent
+		end
+		Model:Destroy()
+		wait()
+		local Model1 = Instance.new("Model", game.ReplicatedStorage.Viewmodels)
+		game:GetObjects('rbxassetid://9471760149')[1].Parent = Model1
+		Model = game.ReplicatedStorage.Viewmodels.Model
+		for _, Child in pairs(Model:GetChildren()) do
+			Child.Parent = Model.Parent
+		end
+		Model:Destroy()
+		wait()
+		game.ReplicatedStorage.Viewmodels["v_Bayonet_M9"].Name = "v_CT Knife"
+		game.ReplicatedStorage.Viewmodels["v_Bayonet_M9"].Name = "v_T Knife"
+		wait()
+		game.ReplicatedStorage.Viewmodels["v_CT Knife"]["BayonetM9"].TextureID = "rbxassetid://9529085691"
+		game.ReplicatedStorage.Viewmodels["v_T Knife"]["BayonetM9"].TextureID = "rbxassetid://9529085691"
 	end
 end)
 models:Element("Toggle", "Netherite Sword [default Knife]", nil, function(tbl)
@@ -4789,6 +4863,32 @@ models:Element("Toggle", "Shadow Daggers Fade [default Knife]", nil, function(tb
 		game.ReplicatedStorage.Viewmodels["v_daggers"].Name = "v_T Knife"
 	end
 end) 
+models:Element("Toggle", "TNT & Flint and Steel [C4]", nil, function(tbl)
+	if tbl.Toggle then 
+		game.ReplicatedStorage.Viewmodels["v_C4"]:Destroy()
+		wait()
+		local Model1 = Instance.new("Model", game.ReplicatedStorage.Viewmodels)
+		game:GetObjects('rbxassetid://9480614267')[1].Parent = Model1
+		Model = game.ReplicatedStorage.Viewmodels.Model
+		for _, Child in pairs(Model:GetChildren()) do
+			Child.Parent = Model.Parent
+		end
+		Model:Destroy()
+		wait()
+		game.ReplicatedStorage.Viewmodels["v_CubeBomb"].Name = "v_C4"
+		wait()
+		game.ReplicatedStorage.Viewmodels["v_C4"]["Cube"]["Bottom"].Texture = "rbxassetid://48005064"
+		game.ReplicatedStorage.Viewmodels["v_C4"]["Cube"]["Right"].Texture = "rbxassetid://48005067"
+		game.ReplicatedStorage.Viewmodels["v_C4"]["Cube"]["Front"].Texture = "rbxassetid://48005067"
+		game.ReplicatedStorage.Viewmodels["v_C4"]["Cube"]["Back"].Texture = "rbxassetid://48005067"
+		game.ReplicatedStorage.Viewmodels["v_C4"]["Cube"]["Left"].Texture = "rbxassetid://48005067"
+		game.ReplicatedStorage.Viewmodels["v_C4"]["Cube"]["Top"].Texture = "rbxassetid://48005073"
+		game.ReplicatedStorage.Viewmodels["v_C4"]["CubePart"]["Bottom"].Texture = "rbxassetid://131420078"
+		game.ReplicatedStorage.Viewmodels["v_C4"]["CubePart"]["Top"].Texture = "rbxassetid://131420069"
+		game.ReplicatedStorage.Viewmodels["v_C4"]["Cube"].Transparency = 0
+		game.ReplicatedStorage.Viewmodels["v_C4"]["CubePart"].Transparency = 1
+	end
+end)
 
 local weird = different:Sector("weird", "Left")
 weird:Element("Button","Rejoin",{},function()
@@ -5438,7 +5538,7 @@ world:Element("ToggleTrans", "molly radius", {default = {Color = Color3.fromRGB(
 	if tbl.Toggle then
 		for i,fire in pairs(RayIgnore:FindFirstChild("Fires"):GetChildren()) do
 			fire.Transparency = tbl.Transparency
-            fire.Color = tbl.Color
+            fire.Color = tbl.Colorhits
 		end
 	else
 		for i,fire in pairs(RayIgnore:FindFirstChild("Fires"):GetChildren()) do
@@ -5701,7 +5801,7 @@ end
 end)
 
 client:Element("Jumbobox", "damage bypass", {options = {"fire", "fall"}})
-client:Element("Jumbobox", "gun modifiers", {options = {"recoil", "spread", "reload", "equip", "ammo", "automatic", "penetration", "firerate"}})
+client:Element("Jumbobox", "gun modifiers", {options = {"recoil", "spread", "reload", "equip", "ammo", "automatic", "penetration", "firerate", "kniferate"}})
 client:Element("Toggle", "remove killers", {}, function(tbl)
 	if tbl.Toggle then
 		if workspace:FindFirstChild("Map") and workspace:FindFirstChild("Map"):FindFirstChild("Killers") then
@@ -6112,6 +6212,9 @@ RunService.RenderStepped:Connect(function(step)
 					if table.find(values.misc.client["gun modifiers"].Jumbobox, "firerate") then
 						Client.DISABLED = false
 					end
+					if TBLFIND(values.misc.client["gun modifiers"].Jumbobox, "kniferate") and Client.gun:FindFirstChild("Melee") then
+            		    Client.DISABLED = false 
+                	end
 					if Player.Character and Player.Character:FindFirstChild("Humanoid") and Player.Character:FindFirstChild("Humanoid").Health > 0 and Player.Team ~= "TTT" and Player ~= LocalPlayer then
 						if table.find(values.rage.aimbot.resolver.Jumbobox, "pitch") then
 							Player.Character.UpperTorso.Waist.C0 = CFrame.new(Vector3.new(0,0.6,0))
@@ -6176,17 +6279,17 @@ RunService.RenderStepped:Connect(function(step)
 									game.ReplicatedStorage.Events.HitPart:FireServer(unpack(Arguments))
 								end
 							else
-								local Ignore = {unpack(Collision)}
-								table.insert(Ignore, workspace.Map.Clips)
-								table.insert(Ignore, workspace.Map.SpawnPoints)
-								table.insert(Ignore, LocalPlayer.Character)
-								table.insert(Ignore, Player.Character.HumanoidRootPart)
-								if Player.Character:FindFirstChild("BackC4") then
-									table.insert(Ignore, Player.Character.BackC4)
-								end
-								if Player.Character:FindFirstChild("Gun") then
-									table.insert(Ignore, Player.Character.Gun)
-								end
+								local Ignore = {unpack(Collision)}      
+								INSERT(Ignore, workspace.Map.Clips)      
+								INSERT(Ignore, workspace.Map.SpawnPoints)      
+								INSERT(Ignore, LocalPlayer.Character)      
+								INSERT(Ignore, Player.Character.HumanoidRootPart)      
+								if Player.Character:FindFirstChild("BackC4") then      
+									INSERT(Ignore, Player.Character.BackC4)      
+								end      
+								if Player.Character:FindFirstChild("Gun") then      
+									INSERT(Ignore, Player.Character.Gun)      
+								end      
 
 								local Hitboxes = {}
 								for _,Hitbox in ipairs(Stats.hitboxes.Jumbobox) do
@@ -6207,258 +6310,343 @@ RunService.RenderStepped:Connect(function(step)
 											table.insert(Hitboxes, Player.Character.Head)
 										end
 									end
-								end
+								end    
 
-								for _,Hitbox in ipairs(Hitboxes) do
-									local Ignore2 = {unpack(Ignore)}
-									for _,Part in pairs(Player.Character:GetChildren()) do
-										if Part ~= Hitbox then table.insert(Ignore2, Part) end
-									end
-									if values.rage.aimbot["automatic penetration"].Toggle then
-										local Hits = {}
-										local EndHit, Hit, Pos
-										local Penetration = Client.gun.Penetration.Value * 0.01
-										local Ray1 = Ray.new(Origin, (Hitbox.Position - Origin).unit * (Hitbox.Position - Origin).magnitude)
-										repeat
-											Hit, Pos = workspace:FindPartOnRayWithIgnoreList(Ray1, Ignore2, false, true)
-											if Hit ~= nil and Hit.Parent ~= nil then
-												if Hit and Multipliers[Hit.Name] ~= nil then
-													EndHit = Hit
-												else
-													table.insert(Ignore2, Hit)
-													table.insert(Hits, {["Position"] = Pos,["Hit"] = Hit})
-												end
-											end
-										until EndHit ~= nil or #Hits >= 4 or Hit == nil
-										if EndHit ~= nil and Multipliers[EndHit.Name] ~= nil and #Hits <= 4 then
-											if #Hits == 0 then
-												local Damage = Client.gun.DMG.Value * Multipliers[EndHit.Name]
-												if Player:FindFirstChild("Kevlar") then
-													if string.find(EndHit.Name, "Head") then
-														if Player:FindFirstChild("Helmet") then
-															Damage = (Damage / 100) * Client.gun.ArmorPenetration.Value
-														end
-													else
-														Damage = (Damage / 100) * Client.gun.ArmorPenetration.Value
-													end
-												end
-												Damage = Damage * (Client.gun.RangeModifier.Value/100 ^ ((Origin - EndHit.Position).Magnitude/500))/100
-												if Damage >= Stats["minimum damage"].Slider then
-													RageGuy = EndHit
-													RageTarget = EndHit
-													if not values.rage.aimbot["silent aim"].Toggle then
-														Camera.CFrame = CFrame.new(CamCFrame.Position, EndHit.Position)
-													end
-													Filter = true
-													if values.rage.aimbot["automatic fire"].Dropdown == "standard" then
-														Client.firebullet()
-														if values.rage.exploits["double tap"].Toggle and values.rage.exploits["double tap"].Active then
-															Client.firebullet()
-														end
-													elseif values.rage.aimbot["automatic fire"].Dropdown == "hitpart" then
-														Client.firebullet()
-														local Arguments = {
-															[1] = EndHit,
-															[2] = EndHit.Position,
-															[3] = LocalPlayer.Character.EquippedTool.Value,
-															[4] = 100,
-															[5] = LocalPlayer.Character.Gun,
-															[8] = 1,
-															[9] = false,
-															[10] = false,
-															[11] = Vector3.new(),
-															[12] = 100,
-															[13] = Vector3.new()
-														}
-														game.ReplicatedStorage.Events.HitPart:FireServer(unpack(Arguments))
-														if values.rage.exploits["double tap"].Toggle and values.rage.exploits["double tap"].Active then
-															Client.firebullet()
-															local Arguments = {
-																[1] = EndHit,
-																[2] = EndHit.Position,
-																[3] = LocalPlayer.Character.EquippedTool.Value,
-																[4] = 100,
-																[5] = LocalPlayer.Character.Gun,
-																[8] = 1,
-																[9] = false,
-																[10] = false,
-																[11] = Vector3.new(),
-																[12] = 100,
-																[13] = Vector3.new()
-															}
-															game.ReplicatedStorage.Events.HitPart:FireServer(unpack(Arguments))
-														end
-													end
-													Filter = false
-													break
-												end
-											else
-												local penetration = Client.gun.Penetration.Value * (0.01 * values.rage.aimbot['penetration'].Slider    )
-												local limit = 0
-												local dmgmodifier = 1
-												for i = 1, #Hits do
-													local data = Hits[i]
-													local part = data["Hit"]
-													local pos = data["Position"]
-													local modifier = 1
-													if part.Material == Enum.Material.DiamondPlate then
-														modifier = 3
-													end
-													if part.Material == Enum.Material.CorrodedMetal or part.Material == Enum.Material.Metal or part.Material == Enum.Material.Concrete or part.Material == Enum.Material.Brick then
-														modifier = 2
-													end
-													if part.Name == "Grate" or part.Material == Enum.Material.Wood or part.Material == Enum.Material.WoodPlanks then
-														modifier = 0.1
-													end
-													if part.Name == "nowallbang" then
-														modifier = 100
-													end
-													if part:FindFirstChild("PartModifier") then
-														modifier = part.PartModifier.Value
-													end
-													if part.Transparency == 1 or part.CanCollide == false or part.Name == "Glass" or part.Name == "Cardboard" then
-														modifier = 0
-													end
-													local direction = (Hitbox.Position - pos).unit * math.clamp(Client.gun.Range.Value, 1, 100)
-													local ray = Ray.new(pos + direction * 1, direction * -2)
-													local _,endpos = workspace:FindPartOnRayWithWhitelist(ray, {part}, true)
-													local thickness = (endpos - pos).Magnitude
-													thickness = thickness * modifier
-													limit = math.min(penetration, limit + thickness)
-													dmgmodifier = 1 - limit / penetration
-												end
-												local Damage = Client.gun.DMG.Value * Multipliers[EndHit.Name] * dmgmodifier
-												if Player:FindFirstChild("Kevlar") then
-													if string.find(EndHit.Name, "Head") then
-														if Player:FindFirstChild("Helmet") then
-															Damage = (Damage / 100) * Client.gun.ArmorPenetration.Value
-														end
-													else
-														Damage = (Damage / 100) * Client.gun.ArmorPenetration.Value
-													end
-												end
-												Damage = Damage * (Client.gun.RangeModifier.Value/100 ^ ((Origin - EndHit.Position).Magnitude/500))/100
-												if Damage >= Stats["minimum damage"].Slider then
-													RageGuy = EndHit
-													RageTarget = EndHit
-													if not values.rage.aimbot["silent aim"].Toggle then
-														Camera.CFrame = CFrame.new(CamCFrame.Position, EndHit.Position)
-													end
-													Filter = true
-													if values.rage.aimbot["automatic fire"].Dropdown == "standard" then
-														Client.firebullet()
-														if values.rage.exploits["double tap"].Toggle and values.rage.exploits["double tap"].Active then
-															Client.firebullet()
-														end
-													elseif values.rage.aimbot["automatic fire"].Dropdown == "hitpart" then
-														Client.firebullet()
-														local Arguments = {
-															[1] = EndHit,
-															[2] = EndHit.Position,
-															[3] = LocalPlayer.Character.EquippedTool.Value,
-															[4] = 100,
-															[5] = LocalPlayer.Character.Gun,
-															[8] = 1,
-															[9] = false,
-															[10] = false,
-															[11] = Vector3.new(),
-															[12] = 100,
-															[13] = Vector3.new()
-														}
-														game.ReplicatedStorage.Events.HitPart:FireServer(unpack(Arguments))
-														if values.rage.exploits["double tap"].Toggle and values.rage.exploits["double tap"].Active then
-															Client.firebullet()
-															local Arguments = {
-																[1] = EndHit,
-																[2] = EndHit.Position,
-																[3] = LocalPlayer.Character.EquippedTool.Value,
-																[4] = 100,
-																[5] = LocalPlayer.Character.Gun,
-																[8] = 1,
-																[9] = false,
-																[10] = false,
-																[11] = Vector3.new(),
-																[12] = 100,
-																[13] = Vector3.new()
-															}
-															game.ReplicatedStorage.Events.HitPart:FireServer(unpack(Arguments))
-														end
-													end
-													Filter = false
-													break
-												end
-											end
-										end
-									else
-										local Ray = Ray.new(Origin, (Hitbox.Position - Origin).unit * (Hitbox.Position - Origin).magnitude)
-										local Hit, Pos = workspace:FindPartOnRayWithIgnoreList(Ray, Ignore2, false, true)
+								for _,Hitbox in ipairs(Hitboxes) do      
+									local Ignore2 = {unpack(Ignore)}      
+									for _,Part in pairs(Player.Character:GetChildren()) do      
+										if Part ~= Hitbox then INSERT(Ignore2, Part) end      
+									end      
+								if values.rage.aimbot['automatic penetration'].Toggle then
+								local Hits = {}
+								local EndHit, Hit, Pos
+								
+								local Ray1 = RAY(Origin, (Hitbox.Position  - Origin).unit * (Hitbox.Position - Origin).magnitude)
+								repeat
+									Hit, Pos = workspace:FindPartOnRayWithIgnoreList(Ray1, Ignore2, false, true)
+									if Hit ~= nil and Hit.Parent ~= nil then
 										if Hit and Multipliers[Hit.Name] ~= nil then
-											local Damage = Client.gun.DMG.Value * Multipliers[Hit.Name]
-											if Player:FindFirstChild("Kevlar") then
-												if string.find(Hit.Name, "Head") then
-													if Player:FindFirstChild("Helmet") then
-														Damage = (Damage / 100) * Client.gun.ArmorPenetration.Value
-													end
-												else
+											EndHit = Hit
+										else
+											INSERT(Ignore2, Hit)
+											INSERT(Hits, {['Position'] = Pos,['Hit'] = Hit})
+										end
+									end
+								until EndHit ~= nil or #Hits >= 4 or Hit == nil 
+								
+								if EndHit ~= nil and Multipliers[EndHit.Name] ~= nil and #Hits <= 4 then
+									if #Hits == 0 then
+										local Damage = Client.gun.DMG.Value * Multipliers[EndHit.Name]
+										if Player:FindFirstChild('Kevlar') then
+											if FIND(EndHit.Name, 'Head') then
+												if Player:FindFirstChild('Helmet') then
 													Damage = (Damage / 100) * Client.gun.ArmorPenetration.Value
 												end
-											end
-											Damage = Damage * (Client.gun.RangeModifier.Value/100 ^ ((Origin - Hit.Position).Magnitude/500))
-											if Damage >= Stats["minimum damage"].Slider then
-												RageGuy = Hit
-												RageTarget = Hit
-												if not values.rage.aimbot["silent aim"].Toggle then
-													Camera.CFrame = CFrame.new(CamCFrame.Position, Hit.Position)
-												end
-												Filter = true
-												if values.rage.aimbot["automatic fire"].Dropdown == "standard" then
-													Client.firebullet()
-													if values.rage.exploits["double tap"].Toggle and values.rage.exploits["double tap"].Active then
-														Client.firebullet()
-													end
-												elseif values.rage.aimbot["automatic fire"].Dropdown == "hitpart" then
-													Client.firebullet()
-													local Arguments = {
-														[1] = EndHit,
-														[2] = EndHit.Position,
-														[3] = LocalPlayer.Character.EquippedTool.Value,
-														[4] = 100,
-														[5] = LocalPlayer.Character.Gun,
-														[8] = 1,
-														[9] = false,
-														[10] = false,
-														[11] = Vector3.new(),
-														[12] = 100,
-														[13] = Vector3.new()
-													}
-													game.ReplicatedStorage.Events.HitPart:FireServer(unpack(Arguments))
-													if values.rage.exploits["double tap"].Toggle and values.rage.exploits["double tap"].Active then
-														Client.firebullet()
-														local Arguments = {
-															[1] = EndHit,
-															[2] = EndHit.Position,
-															[3] = LocalPlayer.Character.EquippedTool.Value,
-															[4] = 100,
-															[5] = LocalPlayer.Character.Gun,
-															[8] = 1,
-															[9] = false,
-															[10] = false,
-															[11] = Vector3.new(),
-															[12] = 100,
-															[13] = Vector3.new()
-														}
-														game.ReplicatedStorage.Events.HitPart:FireServer(unpack(Arguments))
-													end
-												end
-												Filter = false
-												break
+											else
+												Damage = (Damage / 100) * Client.gun.ArmorPenetration.Value
 											end
 										end
-									end
-								end
-							end
-						end
-					end
+												Damage = Damage * (Client.gun.RangeModifier.Value/100 ^ ((Origin - EndHit.Position).Magnitude/500))/100      
+												if Damage >= Stats["minimum damage"].Slider then      
+													RageGuy = EndHit      
+													RageTarget = EndHit      
+													if not values.rage.aimbot["silent aim"].Toggle then      
+														Camera.CFrame = CF(CamCFrame.Position, EndHit.Position)      
+													end      
+													Filter = true      
+													if values.rage.aimbot["automatic fire"].Dropdown == "standard" then      
+														Client.firebullet()      
+														if values.rage.exploits["double tap"].Toggle and values.rage.exploits["double tap"].Active then
+													Client.firebullet()
+													Client.firebullet()
+												end
+														--CreateHitElement("Hit "..EndHit.Parent.Name.." in the "..EndHit.Name,Color3.new(1,1,1)) 
+													elseif values.rage.aimbot["automatic fire"].Dropdown == "hitpart" then      
+														Client.firebullet()      
+														local Arguments = {      
+															[1] = EndHit,      
+															[2] = EndHit.Position,      
+															[3] = LocalPlayer.Character.EquippedTool.Value,      
+															[4] = 100,      
+															[5] = LocalPlayer.Character.Gun,      
+															[8] = 1,      
+															[9] = false,      
+															[10] = false,      
+															[11] = Vec3(),      
+															[12] = 100,      
+															[13] = Vec3()      
+														}      
+														game.ReplicatedStorage.Events.HitPart:FireServer(unpack(Arguments))   
+														if values.rage.exploits["double tap"].Toggle and values.rage.exploits["double tap"].Active then      
+															Client.firebullet()      
+															local Arguments = {      
+																[1] = EndHit,      
+																[2] = EndHit.Position,      
+																[3] = LocalPlayer.Character.EquippedTool.Value,      
+																[4] = 100,      
+																[5] = LocalPlayer.Character.Gun,      
+																[8] = 1,      
+																[9] = false,      
+																[10] = false,      
+																[11] = Vec3(),      
+																[12] = 100,      
+																[13] = Vec3()      
+															}      
+															game.ReplicatedStorage.Events.HitPart:FireServer(unpack(Arguments))      
+															Client.firebullet()      
+															local Arguments = {      
+																[1] = EndHit,      
+																[2] = EndHit.Position,      
+																[3] = LocalPlayer.Character.EquippedTool.Value,      
+																[4] = 100,      
+																[5] = LocalPlayer.Character.Gun,      
+																[8] = 1,      
+																[9] = false,      
+																[10] = false,      
+																[11] = Vec3(),      
+																[12] = 100,      
+																[13] = Vec3()      
+															}      
+															game.ReplicatedStorage.Events.HitPart:FireServer(unpack(Arguments))     
+														end      
+														--CreateHitElement("Hit "..EndHit.Parent.Name.." in the "..EndHit.Name,Color3.new(1,1,1)) 
+													end      
+													Filter = false      
+													break      
+												end      
+											else      
+												local penetration = Client.gun.Penetration.Value * 0.01	      
+												local limit = 0      
+												local dmgmodifier = 1      
+												for i = 1, #Hits do      
+													local data = Hits[i]      
+													local part = data["Hit"]      
+													local pos = data["Position"]      
+													local modifier = 1      
+													if part.Material == Enum.Material.DiamondPlate then      
+														modifier = 3      
+													end      
+													if part.Material == Enum.Material.CorrodedMetal or part.Material == Enum.Material.Metal or part.Material == Enum.Material.Concrete or part.Material == Enum.Material.Brick then      
+														modifier = 2       
+													end      
+													if part.Name == "Grate" or part.Material == Enum.Material.Wood or part.Material == Enum.Material.WoodPlanks then      
+														modifier = 0.01      
+													end      
+													if part.Name == "nowallbang" then      
+														modifier = 100      
+													end      
+													if part:FindFirstChild("PartModifier") then      
+														modifier = part.PartModifier.Value      
+													end      
+													if part.Transparency == 1 or part.CanCollide == false or part.Name == "Glass" or part.Name == "Cardboard" then      
+														modifier = 0      
+													end      
+													local direction = (Hitbox.Position - pos).unit * CLAMP(Client.gun.Range.Value, 1, 100)      
+													local ray = RAY(pos + direction * 1, direction * -2)      
+													local _,endpos = workspace:FindPartOnRayWithWhitelist(ray, {part}, true)      
+													local thickness = (endpos - pos).Magnitude      
+													thickness = thickness * modifier      
+													limit = MIN(penetration, limit + thickness)      
+													dmgmodifier = 1 - limit / penetration      
+												end      
+												local Damage = Client.gun.DMG.Value * Multipliers[EndHit.Name] * dmgmodifier      
+												if Player:FindFirstChild("Kevlar") then      
+													if FIND(EndHit.Name, "Head") then      
+														if Player:FindFirstChild("Helmet") then      
+															Damage = (Damage / 100) * Client.gun.ArmorPenetration.Value      
+														end      
+													else      
+														Damage = (Damage / 100) * Client.gun.ArmorPenetration.Value      
+													end      
+												end      
+												Damage = Damage * (Client.gun.RangeModifier.Value/100 ^ ((Origin - EndHit.Position).Magnitude/500))/100      
+												if Damage >= Stats["minimum damage"].Slider then      
+													RageGuy = EndHit      
+													RageTarget = EndHit      
+													if not values.rage.aimbot["silent aim"].Toggle then      
+														Camera.CFrame = CF(CamCFrame.Position, EndHit.Position)      
+													end      
+													Filter = true      
+													if values.rage.aimbot["automatic fire"].Dropdown == "standard" then            
+														Client.firebullet()      
+														if values.rage.exploits["double tap"].Toggle and values.rage.exploits["double tap"].Active then      
+															Client.firebullet()      
+															Client.firebullet()    
+														end  
+														--CreateHitElement("Hit "..EndHit.Parent.Name.." in the "..EndHit.Name,Color3.new(1,1,1)) 
+													elseif values.rage.aimbot["automatic fire"].Dropdown == "hitpart" then      
+														Client.firebullet()      
+														local Arguments = {      
+															[1] = EndHit,      
+															[2] = EndHit.Position,      
+															[3] = LocalPlayer.Character.EquippedTool.Value,      
+															[4] = 100,      
+															[5] = LocalPlayer.Character.Gun,      
+															[8] = 1,      
+															[9] = false,      
+															[10] = false,      
+															[11] = Vec3(),      
+															[12] = 100,      
+															[13] = Vec3()      
+														}      
+														game.ReplicatedStorage.Events.HitPart:FireServer(unpack(Arguments)) 
+														Client.firebullet()  
+															local Arguments = {      
+															[1] = EndHit,      
+															[2] = EndHit.Position,      
+															[3] = LocalPlayer.Character.EquippedTool.Value,      
+															[4] = 100,      
+															[5] = LocalPlayer.Character.Gun,      
+															[8] = 1,      
+															[9] = false,      
+															[10] = false,      
+															[11] = Vec3(),      
+															[12] = 100,      
+															[13] = Vec3()      
+														}      
+														game.ReplicatedStorage.Events.HitPart:FireServer(unpack(Arguments))  
+														--CreateHitElement("Hit "..EndHit.Parent.Name.." in the "..EndHit.Name,Color3.new(1,1,1)) 
+														if values.rage.exploits["double tap"].Toggle and values.rage.exploits["double tap"].Active then      
+															Client.firebullet()      
+															local Arguments = {      
+																[1] = EndHit,      
+																[2] = EndHit.Position,      
+																[3] = LocalPlayer.Character.EquippedTool.Value,      
+																[4] = 100,      
+																[5] = LocalPlayer.Character.Gun,      
+																[8] = 1,      
+																[9] = false,      
+																[10] = false,      
+																[11] = Vec3(),      
+																[12] = 100,      
+																[13] = Vec3()      
+															}      
+															game.ReplicatedStorage.Events.HitPart:FireServer(unpack(Arguments))      
+															Client.firebullet()      
+															local Arguments = {      
+																[1] = EndHit,      
+																[2] = EndHit.Position,      
+																[3] = LocalPlayer.Character.EquippedTool.Value,      
+																[4] = 100,      
+																[5] = LocalPlayer.Character.Gun,      
+																[8] = 1,      
+																[9] = false,      
+																[10] = false,      
+																[11] = Vec3(),      
+																[12] = 100,      
+																[13] = Vec3()      
+															}      
+															game.ReplicatedStorage.Events.HitPart:FireServer(unpack(Arguments))      
+														end      
+													end      
+													Filter = false      
+													break      
+												end      
+											end      
+										end      
+									else      
+										local Ray = RAY(Origin, (Hitbox.Position - Origin).unit * (Hitbox.Position - Origin).magnitude) 
+											local Hit, Pos = workspace:FindPartOnRayWithIgnoreList(Ray, Ignore2, false, true) 
+											if Hit and Multipliers[Hit.Name] ~= nil then 
+												local Damage = Client.gun.DMG.Value * Multipliers[Hit.Name] 
+												if Player:FindFirstChild("Kevlar") then 
+													if FIND(Hit.Name, "Head") then 
+														if Player:FindFirstChild("Helmet") then 
+															Damage = (Damage / 100) * Client.gun.ArmorPenetration.Value 
+														end 
+													else 
+														Damage = (Damage / 100) * Client.gun.ArmorPenetration.Value 
+													end 
+												end 
+											Damage = Damage * (Client.gun.RangeModifier.Value/100 ^ ((Origin - Hit.Position).Magnitude/500))      
+											if Damage >= Stats["minimum damage"].Slider then      
+												RageGuy = Hit      
+												RageTarget = Hit      
+												if not values.rage.aimbot["silent aim"].Toggle then      
+													Camera.CFrame = CF(CamCFrame.Position, Hit.Position)      
+												end      
+												Filter = true      
+												if values.rage.aimbot["automatic fire"].Dropdown == "standard" then      
+													Client.firebullet()      
+													if values.rage.exploits["double tap"].Toggle and values.rage.exploits["double tap"].Active then      
+														Client.firebullet()    
+														Client.firebullet()    
+													end      
+													--CreateHitElement("Hit "..EndHit.Parent.Name.." in the "..EndHit.Name,Color3.new(1,1,1)) 
+												elseif values.rage.aimbot["automatic fire"].Dropdown == "hitpart" then     
+													--CreateHitElement("Hit "..EndHit.Parent.Name.." in the "..EndHit.Name,Color3.new(1,1,1))  
+													Client.firebullet()          
+													local Arguments = {      
+														[1] = EndHit,      
+														[2] = EndHit.Position,      
+														[3] = LocalPlayer.Character.EquippedTool.Value,      
+														[4] = 100,      
+														[5] = LocalPlayer.Character.Gun,      
+														[8] = 1,      
+														[9] = false,      
+														[10] = false,      
+														[11] = Vec3(),      
+														[12] = 100,      
+														[13] = Vec3()      
+													}      
+													game.ReplicatedStorage.Events.HitPart:FireServer(unpack(Arguments)) 
+													Client.firebullet()      
+													local Arguments = {      
+														[1] = EndHit,      
+														[2] = EndHit.Position,      
+														[3] = LocalPlayer.Character.EquippedTool.Value,      
+														[4] = 100,      
+														[5] = LocalPlayer.Character.Gun,      
+														[8] = 1,      
+														[9] = false,      
+														[10] = false,      
+														[11] = Vec3(),      
+														[12] = 100,      
+														[13] = Vec3()      
+													}      
+													game.ReplicatedStorage.Events.HitPart:FireServer(unpack(Arguments))      
+													if values.rage.exploits["double tap"].Toggle and values.rage.exploits["double tap"].Active then      
+														Client.firebullet()      
+														local Arguments = {      
+															[1] = EndHit,      
+															[2] = EndHit.Position,      
+															[3] = LocalPlayer.Character.EquippedTool.Value,      
+															[4] = 100,      
+															[5] = LocalPlayer.Character.Gun,      
+															[8] = 1,      
+															[9] = false,      
+															[10] = false,      
+															[11] = Vec3(),      
+															[12] = 100,      
+															[13] = Vec3()      
+														}      
+														game.ReplicatedStorage.Events.HitPart:FireServer(unpack(Arguments))      
+														Client.firebullet()      
+														local Arguments = {      
+															[1] = EndHit,      
+															[2] = EndHit.Position,      
+															[3] = LocalPlayer.Character.EquippedTool.Value,      
+															[4] = 100,      
+															[5] = LocalPlayer.Character.Gun,      
+															[8] = 1,      
+															[9] = false,      
+															[10] = false,      
+															[11] = Vec3(),      
+															[12] = 100,      
+															[13] = Vec3()      
+														}      
+														game.ReplicatedStorage.Events.HitPart:FireServer(unpack(Arguments))      
+													end      
+												end      
+												Filter = false      
+												break      
+											end      
+										end      
+									end      
+								end      
+							end      
+						end      
+					end      
 				end
 			elseif values.legit.aimbot["aim assist"].Toggle and values.legit.aimbot["aim assist"].Active and not library.uiopen then
 				local Stats = GetStatsLegit(GetWeaponLegit(Client.gun.Name))
