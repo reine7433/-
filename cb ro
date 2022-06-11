@@ -1,10 +1,23 @@
-local library = loadstring(game:HttpGet("https://pastebin.com/raw/RvJ0qewm", true))() 
-local main = library:CreateWindow("Main") 
+-- init
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/GreenDeno/Venyx-UI-Library/main/source.lua"))()
+local venyx = library.new("KAT GUI", 5013109572)
 
+-- themes
+local themes = {
+Background = Color3.fromRGB(24, 24, 24),
+Glow = Color3.fromRGB(0, 0, 0),
+Accent = Color3.fromRGB(10, 10, 10),
+LightContrast = Color3.fromRGB(20, 20, 20),
+DarkContrast = Color3.fromRGB(14, 14, 14),  
+TextColor = Color3.fromRGB(255, 255, 255)
+}
 
-local Section = main:Section("") 
+-- first page
+local page = venyx:addPage("Main", 5012544693)
+local section1 = page:addSection("Section 1")
+local section2 = page:addSection("Section 2")
 
-local mod = main:Button("Esp + Chams", function() 
+section1:addButton("Esp + Chams", function()
     local dwEntities = game:GetService("Players")
     local dwLocalPlayer = dwEntities.LocalPlayer 
     local dwRunService = game:GetService("RunService")
@@ -538,7 +551,7 @@ if not _G.WRDESPLoaded then
     _G.WRDESPLoaded = true
 end
 end)
-local mod = main:Button("esp", function() 
+section1:addButton("Esp", function()
     --[[
 A distribution of https://wearedevs.net/scripts
 Created August 17, 2021, Last updated August 17, 2021
@@ -947,8 +960,7 @@ if not _G.WRDESPLoaded then
     _G.WRDESPLoaded = true
 end
 end)
-
-local mod = main:Button("silent aim (head)", function() 
+section1:addButton("Silent aim", function()
     getgenv().silentaim_settings = {
         fov = 300,
         hitbox = "Head",
@@ -1017,9 +1029,8 @@ local mod = main:Button("silent aim (head)", function()
      
         return Old(Self, unpack(Args))
      end)
-    end)
-
-local mod = main:Button("rage (knife only)", function() 
+end)
+section1:addButton("Rage(knife only)", function()
     local Camera = game:GetService("Workspace").CurrentCamera
     local Players = game:GetService("Players")
     local LocalPlayer = game:GetService("Players").LocalPlayer
@@ -1066,7 +1077,7 @@ local mod = main:Button("rage (knife only)", function()
     setreadonly(GameMetaTable, true)
 loadstring(game:HttpGet("https://pastebin.com/raw/hgbCALJw", true))()
 end)
-local mod = main:Button("Hitbox extender", function() 
+section1:addButton("Hitbox extender", function()
     local Players = game:GetService("Players")
 for _, player in pairs(Players:GetPlayers()) do
 	local charpre = player.Character or player.CharacterAdded:Wait()
@@ -1094,7 +1105,7 @@ for _, player in pairs(Players:GetPlayers()) do
 	end)
 end
 end)
-local mod = main:Button("inf ammo", function() 
+section1:addButton("Inf ammo", function()
     while wait(1) do
         for i, v in next, getgc(true) do
             if type(v) == "table" then
@@ -1112,11 +1123,17 @@ local mod = main:Button("inf ammo", function()
         end
     end
 end)
-local Section = main:Section("")
-local mod = main:Button("Fps boost", function() 
+
+section2:addKeybind("Toggle Keybind", Enum.KeyCode.RightShift, function()
+print("Activated Keybind")
+venyx:toggle()
+end, function()
+print("Changed Keybind")
+end)
+section2:addButton("Fps boost", function()
     loadstring(game:HttpGet("https://pastebin.com/raw/gX9mR85X", true))()
 end)
-local mod = main:Button("Rejoin", function() 
+section2:addButton("Rejoin", function()
     local ts = game:GetService("TeleportService")
 	
 	local p = game:GetService("Players").LocalPlayer
@@ -1124,128 +1141,8 @@ local mod = main:Button("Rejoin", function()
 	 
 	
 	ts:Teleport(game.PlaceId, p)
-	end)
-local Section = main:Section("")
-local mod = main:Button("Remove cursor", function() 
-    local UserInputService = game:GetService("UserInputService")
-UserInputService.MouseIconEnabled = false
 end)
-local mod = main:Button("Spawn cursor", function() 
-    local UserInputService = game:GetService("UserInputService")
-UserInputService.MouseIconEnabled = true
-end)
-local mod = main:Button("Spawn crosshair", function() 
-    local function API_Check()
-        if Drawing == nil then
-            return "No"
-        else
-            return "Yes"
-        end
-    end
-    
-    local Find_Required = API_Check()
-    
-    if Find_Required == "No" then
-        game:GetService("StarterGui"):SetCore("SendNotification",{
-            Title = "Exunys Developer";
-            Text = "Crosshair script could not be loaded because your exploit is unsupported.";
-            Duration = math.huge;
-            Button1 = "OK"
-        })
-    
-        return
-    end
-    
-    local Players = game:GetService("Players")
-    local RunService = game:GetService("RunService")
-    local UserInputService = game:GetService("UserInputService")
-    local Camera = workspace.CurrentCamera
-    
-    local Typing = false
-    
-    local ViewportSize_ = Camera.ViewportSize / 2
-    local Axis_X, Axis_Y = ViewportSize_.X, ViewportSize_.Y
-    
-    local HorizontalLine = Drawing.new("Line")
-    local VerticalLine = Drawing.new("Line")
-    
-    _G.SendNotifications = true   -- If set to true then the script would notify you frequently on any changes applied and when loaded / errored. (If a game can detect this, it is recommended to set it to false)
-    _G.DefaultSettings = false   -- If set to true then the script would create a crosshair with the default settings regardless of any changes.
-    _G.ToMouse = false   -- If set to true then the crosshair will be positioned to your mouse cursor's position. If set to false it will be positioned to the center of your screen.
-    
-    _G.CrosshairVisible = true   -- If set to true then the crosshair would be visible and vice versa.
-    _G.CrosshairSize = 20   -- The size of the crosshair.
-    _G.CrosshairThickness = 1   -- The thickness of the crosshair.
-    _G.CrosshairColor = Color3.fromRGB(0, 255, 0)   -- The color of the crosshair
-    _G.CrosshairTransparency = 1   -- The transparency of the crosshair.
-    
-    _G.DisableKey = Enum.KeyCode.Q   -- The key that enables / disables the crosshair.
-    
-    RunService.RenderStepped:Connect(function()
-        local Real_Size = _G.CrosshairSize / 2
-    
-        HorizontalLine.Color = _G.CrosshairColor
-        HorizontalLine.Thickness = _G.CrosshairThickness
-        HorizontalLine.Visible = _G.CrosshairVisible
-        HorizontalLine.Transparency = _G.CrosshairTransparency
-        
-        VerticalLine.Color = _G.CrosshairColorCrosshairColor
-        VerticalLine.Thickness = _G.CrosshairThickness
-        VerticalLine.Visible = _G.CrosshairVisible
-        VerticalLine.Transparency = _G.CrosshairTransparency
-        
-        if _G.ToMouse == true then
-            HorizontalLine.From = Vector2.new(UserInputService:GetMouseLocation().X - Real_Size, UserInputService:GetMouseLocation().Y)
-            HorizontalLine.To = Vector2.new(UserInputService:GetMouseLocation().X + Real_Size, UserInputService:GetMouseLocation().Y)
-            
-            VerticalLine.From = Vector2.new(UserInputService:GetMouseLocation().X, UserInputService:GetMouseLocation().Y - Real_Size)
-            VerticalLine.To = Vector2.new(UserInputService:GetMouseLocation().X, UserInputService:GetMouseLocation().Y + Real_Size)
-        elseif _G.ToMouse == false then
-            HorizontalLine.From = Vector2.new(Axis_X - Real_Size, Axis_Y)
-            HorizontalLine.To = Vector2.new(Axis_X + Real_Size, Axis_Y)
-        
-            VerticalLine.From = Vector2.new(Axis_X, Axis_Y - Real_Size)
-            VerticalLine.To = Vector2.new(Axis_X, Axis_Y + Real_Size)
-        end
-    end)
-    
-    if _G.DefaultSettings == true then
-        _G.CrosshairVisible = true
-        _G.CrosshairSize = 25
-        _G.CrosshairThickness = 1
-        _G.CrosshairColor = Color3.fromRGB(40, 90, 255)
-        _G.CrosshairTransparency = 0.15
-        _G.DisableKey = Enum.KeyCode.Q
-    end
-    
-    UserInputService.TextBoxFocused:Connect(function()
-        Typing = true
-    end)
-    
-    UserInputService.TextBoxFocusReleased:Connect(function()
-        Typing = false
-    end)
-    
-    UserInputService.InputBegan:Connect(function(Input)
-        if Input.KeyCode == _G.DisableKey and Typing == false then
-            _G.CrosshairVisible = not _G.CrosshairVisible
-            
-            if _G.SendNotifications == true then
-                game:GetService("StarterGui"):SetCore("SendNotification",{
-                    Title = "Exunys Developer";
-                    Text = "The crosshair's visibility is now set to "..tostring(_G.CrosshairVisible)..".";
-                    Duration = 0;
-                })
-            end
-        end
-    end)
-end)
-
-local main = library:CreateWindow("Walkspeed changer")
-
-
-local Section = main:Section("")
-local mod = main:Button("default Walkspeed", function() 
+section2:addButton("Default walkspeed", function()
     local Player = game:GetService("Players").LocalPlayer
 
 local MyWS = 16
@@ -1260,7 +1157,7 @@ end
 LoopWS(Player.Character)
 Player.CharacterAdded:Connect(LoopWS)
 end)
-local mod = main:Button("24 Walkspeed", function() 
+section2:addButton("24 Walkspeed", function()
     local Player = game:GetService("Players").LocalPlayer
 
 local MyWS = 24
@@ -1275,7 +1172,7 @@ end
 LoopWS(Player.Character)
 Player.CharacterAdded:Connect(LoopWS)
 end)
-local mod = main:Button("26 Walkspeed", function() 
+section2:addButton("26 Walkspeed", function()
     local Player = game:GetService("Players").LocalPlayer
 
 local MyWS = 26
@@ -1290,3 +1187,19 @@ end
 LoopWS(Player.Character)
 Player.CharacterAdded:Connect(LoopWS)
 end)
+
+
+
+
+-- second page
+local theme = venyx:addPage("Theme", 5012544693)
+local colors = theme:addSection("Colors")
+
+for theme, color in pairs(themes) do -- all in one theme changer, i know, im cool
+colors:addColorPicker(theme, color, function(color3)
+venyx:setTheme(theme, color3)
+end)
+end
+
+-- load
+venyx:SelectPage(venyx.pages[1], true)
