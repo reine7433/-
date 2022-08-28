@@ -1,0 +1,306 @@
+
+-- UI Lib (Fluxus Lib because I like to shuffle them and they support WEAO <3)
+local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Babyhamsta/RBLX_Scripts/main/UILibs/FluxusUI.lua"))()
+
+-- ESP support
+local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/Babyhamsta/RBLX_Scripts/main/Universal/SimpleHighlightESP.lua"))()
+
+-- Main Window
+local Window = lib:CreateWindow("Bebra🥰Ware👮🏿‍♂️🚔")
+
+-- Create Pages
+local LegitPage = Window:NewTab("Legit")
+local RenderPage = Window:NewTab("Render")
+local MiscPage = Window:NewTab("Misc")
+
+-- Create Sections
+local LegitSection = LegitPage:AddSection("Silent Aim")
+local RenderSection = RenderPage:AddSection("Chams")
+local MiscSection = MiscPage:AddSection("Huynya")
+
+LegitSection:AddButton("Silent Aim V1", "Ебашит онли в ебало в тех, кто ближе по дисте", function()
+    local CurrentCamera = workspace.CurrentCamera
+    local Players = game.Players
+    local LocalPlayer = Players.LocalPlayer
+    local Mouse = LocalPlayer:GetMouse()
+    function ClosestPlayer()
+        local MaxDist, Closest = math.huge
+        for I,V in pairs(Players.GetPlayers(Players)) do
+            if V == LocalPlayer then continue end
+            if V.Team == LocalPlayer then continue end
+            if not V.Character then continue end
+            local Head = V.Character.FindFirstChild(V.Character, "Head")
+            if not Head then continue end
+            local Pos, Vis = CurrentCamera.WorldToScreenPoint(CurrentCamera, Head.Position)
+            if not Vis then continue end
+            local MousePos, TheirPos = Vector2.new(Mouse.X, Mouse.Y), Vector2.new(Pos.X, Pos.Y)
+            local Dist = (TheirPos - MousePos).Magnitude
+            if Dist < MaxDist then
+                MaxDist = Dist
+                Closest = V
+            end
+        end
+        return Closest
+    end
+    local MT = getrawmetatable(game)
+    local OldNC = MT.__namecall
+    local OldIDX = MT.__index
+    setreadonly(MT, false)
+    MT.__namecall = newcclosure(function(self, ...)
+        local Args, Method = {...}, getnamecallmethod()
+        if Method == "FindPartOnRayWithIgnoreList" and not checkcaller() then
+            local CP = ClosestPlayer()
+            if CP and CP.Character and CP.Character.FindFirstChild(CP.Character, "Head") then
+                Args[1] = Ray.new(CurrentCamera.CFrame.Position, (CP.Character.Head.Position - CurrentCamera.CFrame.Position).Unit * 1000)
+                return OldNC(self, unpack(Args))
+            end
+        end
+        return OldNC(self, ...)
+    end)
+    MT.__index = newcclosure(function(self, K)
+        if K == "Clips" then
+            return workspace.Map
+        end
+        return OldIDX(self, K)
+    end)
+    setreadonly(MT, true)
+end)
+
+LegitSection:AddButton("Silent Aim V2", "Ебашит то в тело, то в голову, зато работает по фову", function()
+    local function GetService(Name)
+        return game:GetService(Name)
+    end
+    
+    local Players = GetService("Players")
+    local LocalPlayer = Players.LocalPlayer
+    local RunService = GetService("RunService")
+    local BodyPart = nil
+    local Camera = workspace.CurrentCamera
+    local Mouse = LocalPlayer:GetMouse()
+    
+    local function WTS(Object)
+        local ObjectVector = Camera:WorldToScreenPoint(Object.Position)
+        return Vector2.new(ObjectVector.X, ObjectVector.Y)
+    end
+    
+    local function PositionToRay(Origin, Target)
+        return Ray.new(Origin, (Target - Origin).Unit * 600)
+    end
+    
+    local function Filter(Object)
+        if string.find(Object.Name, "Gun") then
+            return
+        end
+        if Object:IsA("Part") or Object:IsA("MeshPart") then
+            return true
+        end
+    end
+    
+    local function MousePositionToVector2()
+        return Vector2.new(Mouse.X, Mouse.Y)
+    end
+    
+    local function IsOnScreen(Object)
+        local IsOnScreen = Camera:WorldToScreenPoint(Object.Position)
+        return IsOnScreen
+    end
+    
+    local function GetClosestBodyPartFromCursor()
+        local ClosestDistance = math.huge
+        for i,  v in next, Players:GetPlayers() do
+            if v ~= LocalPlayer and v.Team ~= LocalPlayer.Team and v.Character and v.Character:FindFirstChild("Humanoid") then
+                for k,  x in next, v.Character:GetChildren() do
+                    if Filter(x) and IsOnScreen(x) then
+                        local Distance = (WTS(x) - MousePositionToVector2()).Magnitude
+                        if Distance < ClosestDistance then
+                            ClosestDistance = Distance
+                            BodyPart = x
+                        end
+                    end
+                end
+            end
+        end
+    end
+    
+    local OldNameCall; 
+    OldNameCall = hookmetamethod(game, "__namecall", function(Self, ...)
+        local Method = getnamecallmethod()
+        local Args = {...}
+        if Method == "FindPartOnRayWithIgnoreList" and BodyPart ~= nil then
+            Args[1] = PositionToRay(Camera.CFrame.Position, BodyPart.Position)
+            return OldNameCall(Self, unpack(Args))
+        end
+        return OldNameCall(Self, ...)
+    end)
+    
+    RunService:BindToRenderStep("Dynamic Silent Aim", 120, GetClosestBodyPartFromCursor)
+end)
+
+RenderSection:AddButton("Chams", "я нихуя не придумал, кроме как назвать их так в подразделе", function()
+
+    local Storage = game:GetService("CoreGui");
+ local Players = game:GetService("Players");
+ local RunService = game:GetService("RunService");
+
+ local Enabled = true;
+ local TeamCheck = true;
+ local TeamColors = false;
+ local HideFriendly = true;
+ local HideEnemy = false;
+
+ local Neutral = Color3.fromRGB(255, 255, 255);
+ local Friendly = Color3.fromRGB(47, 211, 61);
+ local Enemy = Color3.fromRGB(211, 47, 47);
+
+ local function CreateHighlight(plr)
+    repeat wait() until plr.Character ~= nil;
+    local e = Instance.new("Highlight", Storage);
+    e.OutlineColor = Color3.fromRGB(0, 0, 0);
+    e.OutlineTransparency = 0.6;
+    e.Adornee = plr.Character
+
+    local bb = RunService.RenderStepped:Connect(function()
+        e.Enabled = Enabled;
+
+        if TeamCheck then
+            if plr.Team == Players.LocalPlayer.Team then
+                if HideFriendly then e.Enabled = false end
+                e.FillColor = Friendly
+            else
+                if HideEnemy then e.Enabled = false end
+                e.FillColor = Enemy;
+            end
+
+            if TeamColors then
+                e.FillColor = plr.Team.TeamColor.Color;
+            end
+        else
+            e.FillColor = Neutral;
+        end
+    end)
+
+    plr.CharacterRemoving:Connect(function()
+        e:Destroy()
+        bb:Disconnect()
+    end)
+ end
+
+ for i, v in ipairs(Players:GetChildren()) do
+    if v.Character then
+        CreateHighlight(v);
+    end
+    v.CharacterAdded:Connect(function()
+        CreateHighlight(v);
+    end)
+ end
+
+ Players.PlayerAdded:Connect(function(plr)
+    plr.CharacterAdded:Connect(function()
+        CreateHighlight(plr);
+    end)
+ end)
+
+
+ local Window = Lib:MakeWindow({Name = "Zesty ESP", HidePremium = true, SaveConfig = false});
+ local Toggles = Window:MakeTab({
+    Name = "Toggles"
+ })
+ local Customs = Window:MakeTab({
+    Name = "Customisation"
+ })
+
+ Toggles:AddToggle({
+    Name = "Enabled",
+    Default = true,
+    Callback = function(val)
+        Enabled = val
+    end
+ })
+ Toggles:AddToggle({
+    Name = "Team Check",
+    Default = false,
+    Callback = function(val)
+        TeamCheck = val
+    end
+ })
+ Toggles:AddToggle({
+    Name = "Team Colors",
+    Default = false,
+    Callback = function(val)
+        TeamColors = val
+    end
+ })
+ Toggles:AddToggle({
+    Name = "Hide Friendlys",
+    Default = false,
+    Callback = function(val)
+        HideFriendly = val
+    end
+ })
+ Toggles:AddToggle({
+    Name = "Hide Enemies",
+    Default = false,
+    Callback = function(val)
+        HideFriendly = val
+    end
+ })
+
+ Customs:AddColorpicker({
+    Name = "Neutral Color",
+    Default = Neutral,
+    Callback = function(val)
+        Neutral = val;
+    end
+ })
+ Customs:AddColorpicker({
+    Name = "Friendly Color",
+    Default = Friendly,
+    Callback = function(val)
+        Friendly = val;
+    end
+ })
+ Customs:AddColorpicker({
+    Name = "Enemy Color",
+    Default = Enemy,
+    Callback = function(val)
+        Enemy = val;
+    end
+ })
+
+ Lib:Init();
+end)
+
+MiscSection:AddButton("Rejoin", "Я это для себя больше делал, так что иди нахуй", function()
+    local ts = game:GetService("TeleportService")
+
+local p = game:GetService("Players").LocalPlayer
+
+ 
+
+ts:Teleport(game.PlaceId, p)
+end)
+
+MiscSection:AddButton("Loop defuse bomb", "Короче дефузит бомбу с любого конца карты))", function()
+    local cQ = game.Players.LocalPlayer
+	if cQ.Character and workspace.Map.Gamemode.Value == "defusal" and cQ.Character:FindFirstChild("HumanoidRootPart") and workspace:FindFirstChild("C4") then
+		cQ.Character.HumanoidRootPart.Velocity = Vector3.new(0, 0, 0)
+		local cT = cQ.Character.HumanoidRootPart.CFrame
+		workspace.CurrentCamera.CameraType = "Fixed"
+		cQ.Character.HumanoidRootPart.CFrame =
+		workspace.C4.Handle.CFrame + Vector3.new(0, math.random(10, 20) / 10, 0)
+		cQ.Character.HumanoidRootPart.Velocity = Vector3.new(0, 0, 0)
+		wait(0.1)
+		cQ.Backpack.PressDefuse:FireServer(workspace.C4)
+		cQ.Character.HumanoidRootPart.Velocity = Vector3.new(0, 0, 0)
+		wait(0.25)
+		if cQ.Character and cQ.Character:FindFirstChild("HumanoidRootPart") and workspace:FindFirstChild("C4") and workspace.C4:FindFirstChild("Defusing") and workspace.C4.Defusing.Value == cQ then
+			cQ.Backpack.Defuse:FireServer(workspace.C4)
+		end
+		cQ.Character.HumanoidRootPart.Velocity = Vector3.new(0, 0, 0)
+		wait(0.2)
+		cQ.Character.HumanoidRootPart.Velocity = Vector3.new(0, 0, 0)
+		cQ.Character.HumanoidRootPart.CFrame = cT
+		cQ.Character.HumanoidRootPart.Velocity = Vector3.new(0, 0, 0)
+		game.Workspace.CurrentCamera.CameraType = "Custom"
+	end
+end)
