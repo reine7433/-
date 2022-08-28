@@ -1,19 +1,29 @@
+wait(1.2)
+game.StarterGui:SetCore("SendNotification", {
+Title = "Как же я пастил..."; -- 
+Text = "Ласт апдейт: 28.08"; -- 
+Icon = "rbxassetid://8154448715"; -- t
+Duration = 7; -- 
+})
 
--- UI Lib (Fluxus Lib because I like to shuffle them and they support WEAO <3)
+
+
+
+
 local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Babyhamsta/RBLX_Scripts/main/UILibs/FluxusUI.lua"))()
 
--- ESP support
+
 local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/Babyhamsta/RBLX_Scripts/main/Universal/SimpleHighlightESP.lua"))()
 
--- Main Window
+
 local Window = lib:CreateWindow("Bebra🥰Ware👮🏿‍♂️🚔")
 
--- Create Pages
+
 local LegitPage = Window:NewTab("Legit")
 local RenderPage = Window:NewTab("Render")
 local MiscPage = Window:NewTab("Misc")
 
--- Create Sections
+
 local LegitSection = LegitPage:AddSection("Silent Aim")
 local RenderSection = RenderPage:AddSection("Chams")
 local MiscSection = MiscPage:AddSection("Huynya")
