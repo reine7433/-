@@ -1,27 +1,28 @@
 wait(1.2)
 game.StarterGui:SetCore("SendNotification", {
 Title = "Как же я пастил..."; -- 
-Text = "Ласт апдейт: 28.08"; -- 
+Text = "Ласт апдейт: 29.08"; -- 
 Icon = "rbxassetid://8154448715"; -- t
-Duration = 7; -- 
+Duration = 14; -- 
 })
 
+-- UI Lib (Fluxus Lib because I like to shuffle them and they support WEAO <3)
 local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Babyhamsta/RBLX_Scripts/main/UILibs/FluxusUI.lua"))()
 
-
+-- ESP support
 local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/Babyhamsta/RBLX_Scripts/main/Universal/SimpleHighlightESP.lua"))()
 
-
+-- Main Window
 local Window = lib:CreateWindow("Bebra🥰Ware👮🏿‍♂️🚔")
 
-
+-- Create Pages
 local LegitPage = Window:NewTab("Legit")
 local RenderPage = Window:NewTab("Render")
 local MiscPage = Window:NewTab("Misc")
 
-
+-- Create Sections
 local LegitSection = LegitPage:AddSection("Silent Aim")
-local RenderSection = RenderPage:AddSection("Chams")
+local RenderSection = RenderPage:AddSection("Chams1")
 local MiscSection = MiscPage:AddSection("Huynya")
 
 LegitSection:AddButton("Silent Aim V1", "Ебашит онли в ебало в тех, кто ближе по дисте", function()
@@ -276,6 +277,19 @@ RenderSection:AddButton("Chams", "я нихуя не придумал, кром�
  Lib:Init();
 end)
 
+RenderSection:AddButton("Night Mode", "Пастед фром блокстап. Меняет окружение в ночное", function()
+    game:GetService("Lighting").Brightness = 0
+game:GetService("Lighting").TimeOfDay = 0
+spawn(function()
+    wait(1)
+    while _G['property_nightmode'] == true do
+        game:GetService("Lighting").Brightness = 0
+        game:GetService("Lighting").TimeOfDay = 0
+        wait(1)
+    end
+end)
+end)
+
 MiscSection:AddButton("Rejoin", "Я это для себя больше делал, так что иди нахуй", function()
     local ts = game:GetService("TeleportService")
 
@@ -308,5 +322,146 @@ MiscSection:AddButton("Loop defuse bomb", "Короче дефузит бомб�
 		cQ.Character.HumanoidRootPart.CFrame = cT
 		cQ.Character.HumanoidRootPart.Velocity = Vector3.new(0, 0, 0)
 		game.Workspace.CurrentCamera.CameraType = "Custom"
+	end
+end)
+
+MiscSection:AddButton("Inf Money", "", function()
+    game.Players.LocalPlayer.Cash.Value = 9e9
+end)
+
+MiscSection:AddButton("Change ur pistol for AK47", "", function()
+    local gun = "AK47"
+	local givefunc
+	for _, v in pairs(getgc()) do
+	local parentScript = rawget(getfenv(v), "script")
+	
+		if type(v) == "function" and parentScript == game:GetService("Players").LocalPlayer.PlayerGui.Client and islclosure(v) and not is_synapse_function(v) and debug.getinfo(v).name == "giveTool" then
+			givefunc = v
+			break
+		end
+	end
+	debug.setupvalue(givefunc, 7, gun) 
+end)
+
+MiscSection:AddToggle("SpectatorList", "", false, function(bool)
+    Spectator_List = bool;
+
+    if bool then
+local SpectatorsList = Instance.new("ScreenGui")
+		local Spectators = Instance.new("Frame")
+		local Container = Instance.new("Frame")
+		local UIPadding = Instance.new("UIPadding")
+		local Text = Instance.new("TextLabel")
+		local Players = Instance.new("TextLabel")
+		local Background = Instance.new("Frame")
+		local UIGradient = Instance.new("UIGradient")
+		local Color = Instance.new("Frame")
+		local UIGradient_2 = Instance.new("UIGradient")
+		
+		SpectatorsList.Parent = game.CoreGui
+		SpectatorsList.Name = "SpectatorsList"
+		SpectatorsList.Enabled = true
+		
+		Spectators.Name = "Spectators"
+		Spectators.Parent = SpectatorsList
+		Spectators.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+		Spectators.BackgroundTransparency = 1.000
+		Spectators.BorderColor3 = Color3.fromRGB(20, 20, 20)
+		Spectators.Position = UDim2.new(0.00800000038, 0, 0.400000006, 49)
+		Spectators.Size = UDim2.new(0, 200, 0, 20)
+		
+		Container.Name = "Container"
+		Container.Parent = Spectators
+		Container.BackgroundTransparency = 1.000
+		Container.BorderSizePixel = 0
+		Container.Position = UDim2.new(0, 0, 0, 4)
+		Container.Size = UDim2.new(1, 0, 0, 14)
+		Container.ZIndex = 3
+		
+		UIPadding.Parent = Container
+		UIPadding.PaddingLeft = UDim.new(0, 4)
+		
+		Text.Name = "Text"
+		Text.Parent = Container
+		Text.BackgroundTransparency = 1.000
+		Text.Size = UDim2.new(1, 0, 1, 0)
+		Text.ZIndex = 4
+		Text.Font = Enum.Font.Code
+		Text.Text = "spectators"
+		Text.TextColor3 = Color3.fromRGB(65025, 65025, 65025)
+		Text.TextSize = 13.000
+		Text.TextStrokeTransparency = 0.000
+		
+		Players.Name = "Players"
+		Players.Parent = Container
+		Players.BackgroundTransparency = 1.000
+		Players.Position = UDim2.new(0.0196080022, 0, 1.44285719, 0)
+		Players.Size = UDim2.new(0.980391979, 0, 1.14285719, 0)
+		Players.ZIndex = 4
+		Players.Font = Enum.Font.Code
+		Players.Text = "loading"
+		Players.TextColor3 = Color3.fromRGB(65025, 65025, 65025)
+		Players.TextSize = 12.000
+		Players.TextStrokeTransparency = 0.000
+		Players.TextYAlignment = Enum.TextYAlignment.Top
+		
+		Background.Name = "Background"
+		Background.Parent = Spectators
+		Background.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		Background.BorderColor3 = Color3.fromRGB(20, 20, 20)
+		Background.Size = UDim2.new(1, 0, 1, 0)
+		
+		UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(22, 22, 22)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(22, 22, 22))}
+		UIGradient.Rotation = 90
+		UIGradient.Parent = Background
+		
+		Color.Name = "Color"
+		Color.Parent = Spectators
+		Color.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		Color.BorderSizePixel = 0
+		Color.Size = UDim2.new(1, 0, 0, 2)
+		Color.ZIndex = 2
+		
+		UIGradient_2.Color = ColorSequence.new{ColorSequenceKeypoint.new(0, Color3.fromRGB(113, 13, 255)), ColorSequenceKeypoint.new(1, Color3.fromRGB(113, 13, 255))}
+		UIGradient_2.Rotation = 90
+		UIGradient_2.Parent = Color
+		
+		function GetSpectators()
+			local CurrentSpectators = ""
+			for i,v in pairs(game.Players:GetChildren()) do 
+				pcall(function()
+					if v ~= game.Players.LocalPlayer then
+						if not v.Character then 
+							if (v.CameraCF.Value.p - game.Workspace.CurrentCamera.CFrame.p).Magnitude < 10 then 
+								if CurrentSpectators == "" then
+										CurrentSpectators = v.Name
+									else
+										CurrentSpectators = CurrentSpectators.. "\n" ..v.Name
+									end
+								end
+							end
+						end
+					end)
+				end
+			return CurrentSpectators
+		end
+		
+		spawn(function()
+			while wait(0.1) do
+				if SpectatorsList.Enabled then
+					Players.Text = GetSpectators()
+				end
+			end
+		end)
+		
+		local function SCUAM_fake_script() -- Spectators.LocalScript 
+			local script = Instance.new('LocalScript', Spectators)
+			local gui = script.Parent
+			gui.Draggable = true
+			gui.Active = true
+		end
+		coroutine.wrap(SCUAM_fake_script)()
+	else
+	game.CoreGui.SpectatorsList:Destroy()
 	end
 end)
